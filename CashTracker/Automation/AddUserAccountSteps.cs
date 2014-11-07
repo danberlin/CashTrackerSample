@@ -36,7 +36,9 @@ namespace CashTracker.Automation
             var tracker = ScenarioContext.Current["PettyCashTracker"] as PettyCashTracker;
             if (tracker == null) Assert.Fail("No tracker configured");
             tracker.SetActiveUser(p0);
-            tracker.MakeDeposit(p1);
+
+            if (p1 > 0)
+                tracker.MakeDeposit(p1);
         }
 
         [When(@"I add the user account ""(.*)""")]
