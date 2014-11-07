@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using NUnit.Framework;
 
 namespace CashTracker
 {
@@ -30,14 +32,18 @@ namespace CashTracker
             CashOnHand -= withdrawalAmount;
         }
 
+        private List<string> _userAccounts = new List<string>();
+        private string _activeUser = null;
+
         public void AddUserAccount(string name)
         {
-            throw new NotImplementedException();
+            _userAccounts.Add(name);
         }
 
         public void SetActiveUser(string name)
         {
-            throw new NotImplementedException();
+            if (_userAccounts.Contains(name))
+                _activeUser = _userAccounts.Find(match => match.Equals(name));
         }
     }
 }
