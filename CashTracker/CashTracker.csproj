@@ -69,6 +69,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Automation\AddUserAccountSteps.cs" />
+    <Compile Include="Features\AddUserAccount.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AddUserAccount.feature</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -113,6 +119,10 @@
     <None Include="Features\MakeWithdrawal.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>MakeWithdrawal.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Features\AddUserAccount.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>AddUserAccount.feature.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
