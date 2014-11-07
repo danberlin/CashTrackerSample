@@ -29,5 +29,15 @@ namespace CashTracker
 
             CashOnHand -= withdrawalAmount;
         }
+
+        public void AddUserAccount(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetActiveUser(string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
