@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using NUnit.Framework;
 
 namespace CashTracker
 {
@@ -11,7 +10,22 @@ namespace CashTracker
             CashOnHand = initialBalance;
         }
 
-        public decimal CashOnHand { get; private set; }
+        private decimal _anonymousCashOnHand;
+
+        public decimal CashOnHand
+        {
+            get {
+                return _activeUser == null ? _anonymousCashOnHand : _userAccounts[_activeUser];
+            }
+
+            private set
+            {
+                if (_activeUser == null)
+                    _anonymousCashOnHand = value;
+                else
+                    _userAccounts[_activeUser] = value;
+            }
+        }
 
         public void MakeDeposit(decimal depositAmount)
         {
@@ -32,18 +46,18 @@ namespace CashTracker
             CashOnHand -= withdrawalAmount;
         }
 
-        private List<string> _userAccounts = new List<string>();
-        private string _activeUser = null;
+        private Dictionary<string, decimal> _userAccounts = new Dictionary<string, decimal>();
+        private string _activeUser;
 
         public void AddUserAccount(string name)
         {
-            _userAccounts.Add(name);
+            _userAccounts.Add(name, 0);
         }
 
         public void SetActiveUser(string name)
         {
-            if (_userAccounts.Contains(name))
-                _activeUser = _userAccounts.Find(match => match.Equals(name));
+            if (_userAccounts.ContainsKey(name))
+                _activeUser = name;
         }
     }
 }
